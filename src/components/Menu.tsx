@@ -8,7 +8,7 @@ export interface IMenu extends Document {
 }
 
 export const MenuSchema: Schema = new Schema<IMenu>({
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true, unique: true, index: true },
   name: { type: String, required: true },
   categories: [CategorySchema],
 });
