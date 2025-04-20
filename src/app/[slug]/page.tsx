@@ -1,19 +1,13 @@
-import { connectDB } from '@/lib/mongodb';
-import Menu from '@/components/Menu';
 import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { Metadata } from 'next';
+import { getMenu } from '@/lib/getMenu';
 
 const notFound = 'Menu não encontrado.';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  await connectDB();
-  const menu = await Menu.findOne({ slug });
+  const menu = await getMenu(slug);
 
   if (!menu) {
     return {
@@ -28,10 +22,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function MenuPage({ params }: Props) {
+export default async function MenuPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  await connectDB();
-  const menu = await Menu.findOne({ slug });
+  const menu = await getMenu(slug);
 
   if (!menu) {
     return <h1>{notFound}</h1>;
