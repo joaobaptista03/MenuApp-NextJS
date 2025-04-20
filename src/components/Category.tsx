@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IProduct, ProductSchema } from './Product';
 
-export interface ICategory {
+export interface ICategory extends Document {
   name: string;
   description: string;
   products: IProduct[];

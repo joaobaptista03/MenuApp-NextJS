@@ -1,5 +1,7 @@
 import { connectDB } from '@/lib/mongodb';
 import Menu from '@/components/Menu';
+import { ICategory } from '@/components/Category';
+import { IProduct } from '@/components/Product';
 import { Metadata } from 'next';
 
 const notFound = 'Menu não encontrado.';
@@ -38,11 +40,11 @@ export default async function MenuPage({ params }: Props) {
   return (
     <div>
       <h1>{menu.name}</h1>
-      {menu.categories.map((category: any) => (
+      {menu.categories.map((category: ICategory) => (
         <div key={category.name}>
           <h2>{category.name}</h2>
           <p>{category.description}</p>
-          {category.products.map((product: any) => (
+          {category.products.map((product: IProduct) => (
             <div key={product.name}>
               <h3>{product.name}</h3>
               <p>{product.description}</p>
