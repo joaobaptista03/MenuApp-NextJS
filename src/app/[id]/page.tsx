@@ -20,7 +20,7 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
         <div key={category.name}>
           <h2>{category.name}</h2>
           <p>{category.description}</p>
-          {category.products.map(async (product: IProduct) => {
+          {category.products.map((product: IProduct) => {
             return (
               <div key={product.name}>
                 <h3>{product.name}</h3>
