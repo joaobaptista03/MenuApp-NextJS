@@ -1,0 +1,37 @@
+{
+    "name": "Padaria do Bairro",
+    "categories": [
+      {
+        "name": "Pães",
+        "description": "Frescos e artesanais.",
+        "products": [
+          {
+            "name": "Pão de Centeio",
+            "description": "Integral e saudável.",
+            "price": 1
+          },
+          {
+            "name": "Pão com Chouriço",
+            "description": "Quentinho e saboroso.",
+            "price": 1.5
+          }
+        ]
+      },
+      {
+        "name": "Bolos",
+        "description": "Doces para todas as ocasiões.",
+        "products": [
+          {
+            "name": "Bolo de Chocolate",
+            "description": "Húmido e intenso.",
+            "price": 2.8
+          },
+          {
+            "name": "Croissant",
+            "description": "Clássico francês.",
+            "price": 1.3
+          }
+        ]
+      }
+    ]
+  }

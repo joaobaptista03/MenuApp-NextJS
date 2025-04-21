@@ -1,11 +1,13 @@
 import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { getMenu } from '@/lib/getMenu';
-import { notFound } from '@/app/layout';
+import { Metadata } from "next";
 
-export default async function MenuPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const menu = await getMenu(slug);
+const notFound = 'Menu não encontrado.';
+
+export default async function MenuPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const menu = await getMenu(id);
 
   if (!menu) {
     return <h1>{notFound}</h1>;
@@ -29,4 +31,21 @@ export default async function MenuPage({ params }: { params: Promise<{ slug: str
       ))}
     </div>
   );
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const menu = await getMenu(id);
+
+  if (!menu) {
+    return {
+      title: notFound,
+      description: notFound,
+    };
+  }
+
+  return {
+    title: menu.name,
+    description: `Menu do ${menu.name}`,
+  };
 }

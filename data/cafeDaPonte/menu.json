@@ -1,0 +1,37 @@
+{
+    "name": "Café da Ponte",
+    "categories": [
+      {
+        "name": "Cafés",
+        "description": "Os nossos cafés especiais.",
+        "products": [
+          {
+            "name": "Expresso",
+            "description": "Café forte e encorpado.",
+            "price": 1.2
+          },
+          {
+            "name": "Cappuccino",
+            "description": "Com leite vaporizado e espuma.",
+            "price": 2.5
+          }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "description": "Perfeitos para acompanhar o café.",
+        "products": [
+          {
+            "name": "Pastel de Nata",
+            "description": "Doce tradicional português.",
+            "price": 1.1
+          },
+          {
+            "name": "Tosta Mista",
+            "description": "Torrada com queijo e fiambre.",
+            "price": 3
+          }
+        ]
+      }
+    ]
+  }

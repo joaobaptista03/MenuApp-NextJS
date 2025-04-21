@@ -1,0 +1,37 @@
+{
+    "name": "Bar do Mar",
+    "categories": [
+      {
+        "name": "Cocktails",
+        "description": "Bebidas refrescantes à beira-mar.",
+        "products": [
+          {
+            "name": "Mojito",
+            "description": "Rum, hortelã, açúcar e lima.",
+            "price": 5.5
+          },
+          {
+            "name": "Caipirinha",
+            "description": "Cachaça, lima e açúcar.",
+            "price": 5
+          }
+        ]
+      },
+      {
+        "name": "Petiscos",
+        "description": "Pequenas delícias do mar.",
+        "products": [
+          {
+            "name": "Lulas Fritas",
+            "description": "Acompanhadas com limão.",
+            "price": 6
+          },
+          {
+            "name": "Camarão ao Alhinho",
+            "description": "Camarões salteados no alho.",
+            "price": 8.5
+          }
+        ]
+      }
+    ]
+  }

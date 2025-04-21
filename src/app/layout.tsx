@@ -1,25 +1,3 @@
-import { getMenu } from "@/lib/getMenu";
-import { Metadata } from "next";
-
-export const notFound = 'Menu não encontrado.';
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const menu = await getMenu(slug);
-
-  if (!menu) {
-    return {
-      title: notFound,
-      description: notFound,
-    };
-  }
-
-  return {
-    title: menu.name,
-    description: `Menu do ${menu.name}`,
-  };
-}
-
 export default function RootLayout({
   children,
 }: {
