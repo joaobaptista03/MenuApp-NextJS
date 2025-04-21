@@ -9,13 +9,15 @@
             "id": "expresso",
             "name": "Expresso",
             "description": "Café forte e encorpado.",
-            "price": 1.2
+            "price": 1.2,
+            "hasImage": false
           },
           {
             "id": "capuccino",
             "name": "Cappuccino",
             "description": "Com leite vaporizado e espuma.",
-            "price": 2.5
+            "price": 2.5,
+            "hasImage": false
           }
         ]
       },
@@ -27,13 +29,15 @@
             "id": "pastel-de-nata",
             "name": "Pastel de Nata",
             "description": "Doce tradicional português.",
-            "price": 1.1
+            "price": 1.1,
+            "hasImage": false
           },
           {
             "id": "tosta-mista",
             "name": "Tosta Mista",
             "description": "Torrada com queijo e fiambre.",
-            "price": 3
+            "price": 3,
+            "hasImage": false
           }
         ]
       }

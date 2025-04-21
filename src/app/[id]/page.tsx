@@ -2,9 +2,6 @@ import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { getMenu } from '@/lib/getMenu';
 import { Metadata } from "next";
-import fs from 'fs/promises';
-import path from 'path';
-import { dataPath } from '@/lib/getMenu';
 
 const notFound = 'Menu não encontrado.';
 
@@ -24,19 +21,12 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
           <h2>{category.name}</h2>
           <p>{category.description}</p>
           {category.products.map(async (product: IProduct) => {
-            const imagePath = path.join(dataPath, id, 'products', `${product.id}.png`);
-            let imageExists = false;
-            try {
-              await fs.access(imagePath, fs.constants.F_OK);
-              imageExists = true;
-            } catch (error) {console.log(`Image not found for product: ${product.name}`, error);}
-
             return (
               <div key={product.name}>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <p>{product.price.toFixed(2)}€</p>
-                {imageExists && (
+                {product.hasImage && (
                   <img
                     src={`/data/${id}/products/${product.id}.png`}
                     alt={product.name}
