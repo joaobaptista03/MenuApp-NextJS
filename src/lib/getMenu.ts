@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { IMenu } from '@/components/Menu';
 
+export const dataPath = path.join(process.cwd(), 'public', 'data');
+
 export async function getMenu(id: string): Promise<IMenu | null> {
   if (!id || typeof id !== 'string') {
     console.error(`Invalid id provided`);
@@ -9,7 +11,7 @@ export async function getMenu(id: string): Promise<IMenu | null> {
   }
 
   try {
-    const filePath = path.join(process.cwd(), 'data', id, 'menu.json');
+    const filePath = path.join(process.cwd(), 'public', 'data', id, 'menu.json');
     
     if (!fs.existsSync(filePath)) {
       console.error(`Menu file not found for id: ${id} at path: ${filePath}`);

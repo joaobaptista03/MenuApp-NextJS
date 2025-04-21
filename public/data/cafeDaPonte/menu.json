@@ -6,11 +6,13 @@
         "description": "Os nossos cafés especiais.",
         "products": [
           {
+            "id": "expresso",
             "name": "Expresso",
             "description": "Café forte e encorpado.",
             "price": 1.2
           },
           {
+            "id": "capuccino",
             "name": "Cappuccino",
             "description": "Com leite vaporizado e espuma.",
             "price": 2.5
@@ -22,11 +24,13 @@
         "description": "Perfeitos para acompanhar o café.",
         "products": [
           {
+            "id": "pastel-de-nata",
             "name": "Pastel de Nata",
             "description": "Doce tradicional português.",
             "price": 1.1
           },
           {
+            "id": "tosta-mista",
             "name": "Tosta Mista",
             "description": "Torrada com queijo e fiambre.",
             "price": 3

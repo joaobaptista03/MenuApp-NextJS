@@ -6,11 +6,13 @@
         "description": "Frescos e artesanais.",
         "products": [
           {
+            "id": "pao-de-centeio",
             "name": "Pão de Centeio",
             "description": "Integral e saudável.",
             "price": 1
           },
           {
+            "id": "pao-com-chourico",
             "name": "Pão com Chouriço",
             "description": "Quentinho e saboroso.",
             "price": 1.5
@@ -22,11 +24,13 @@
         "description": "Doces para todas as ocasiões.",
         "products": [
           {
+            "id": "bolo-de-chocolate",
             "name": "Bolo de Chocolate",
             "description": "Húmido e intenso.",
             "price": 2.8
           },
           {
+            "id": "croissant",
             "name": "Croissant",
             "description": "Clássico francês.",
             "price": 1.3
