@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { IMenu } from '@/components/Menu';
 
-export const dataPath = path.join(process.cwd(), 'public', 'data');
-
 export async function getMenu(id: string): Promise<IMenu | null> {
   if (!id || typeof id !== 'string') {
     console.error(`Invalid id provided`);
