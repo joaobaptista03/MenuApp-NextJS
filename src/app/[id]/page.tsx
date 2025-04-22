@@ -10,7 +10,7 @@ async function getMenu(id: string) {
       cache: 'no-store',
     });
 
-    if (response.status === 404) {
+    if (!response.ok && response.status === 404) {
       return null;
     }
 
