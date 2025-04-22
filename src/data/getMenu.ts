@@ -1,27 +1,13 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
-import { IMenu } from '@/components/Menu';
 
-export async function getMenu(id: string): Promise<IMenu | null> {
-  if (!id || typeof id !== 'string') {
-    console.error(`Invalid id provided`);
-    return null;
-  }
-
+export async function getMenuData(id: string) {
+  const filePath = path.join(process.cwd(), 'public', 'data', id, 'menu.json');
   try {
-    const filePath = path.join(process.cwd(), 'public', 'data', id, 'menu.json');
-    
-    if (!fs.existsSync(filePath)) {
-      console.error(`Menu file not found for id: ${id}, at path: ${filePath}`);
-      return null;
-    }
-
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const menu: IMenu = JSON.parse(fileContent);
-
-    return menu;
-  } catch (error) {
-    console.error(`Error loading menu for id: ${id}`, error);
+    const jsonData = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(jsonData);
+  } catch (error: any) {
+    console.error(`Error reading menu file for id: ${id}, at path: ${filePath}`, error);
     return null;
   }
 }

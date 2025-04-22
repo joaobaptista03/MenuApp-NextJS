@@ -1,4 +1,4 @@
-import { getMenu } from "@/data/getMenu";
+import { getMenuData } from "@/data/getMenu";
 import { notFound } from "@/commonVars";
 import { Metadata } from "next";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const menu = await getMenu(id);
+  const menu = await getMenuData(id);
 
   if (!menu) {
     return {
