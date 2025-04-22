@@ -4,9 +4,8 @@ import { notFound } from "@/commonVars";
 
 async function getMenu(id: string) {
   try {
-    const url = `http://${process.env.VERCEL_URL}/api/menu/${id}`;
-    console.log('Fetching menu from:', url);
-    const response = await fetch(url, {
+    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/menu/${id}`, {
       method: 'GET',
       cache: 'no-store',
     });
