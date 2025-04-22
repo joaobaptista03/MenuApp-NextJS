@@ -1,9 +1,27 @@
 import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
-import { getMenu } from '@/lib/getMenu';
-import { Metadata } from "next";
 
-const notFound = 'Menu não encontrado.';
+export const notFound = 'Menu não encontrado.';
+
+async function getMenu(id: string) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/menu/${id}`, {
+      method: 'GET',
+      cache: 'no-store',
+    });
+
+    if (response.status === 404) {
+      return null;
+    }
+    
+    const data = await response.json();
+    return data;
+  }
+  catch (error) {
+    console.error('Error fetching menu:', error);
+    return null;
+  }
+}
 
 export default async function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -40,21 +58,4 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
       ))}
     </div>
   );
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
-  const menu = await getMenu(id);
-
-  if (!menu) {
-    return {
-      title: notFound,
-      description: notFound,
-    };
-  }
-
-  return {
-    title: menu.name,
-    description: `Menu do ${menu.name}`,
-  };
 }

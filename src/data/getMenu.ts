@@ -14,7 +14,7 @@ export async function getMenu(id: string): Promise<IMenu | null> {
     const filePath = path.join(process.cwd(), 'public', 'data', id, 'menu.json');
     
     if (!fs.existsSync(filePath)) {
-      console.error(`Menu file not found for id: ${id} at path: ${filePath}`);
+      console.error(`Menu file not found for id: ${id}, at path: ${filePath}`);
       return null;
     }
 
