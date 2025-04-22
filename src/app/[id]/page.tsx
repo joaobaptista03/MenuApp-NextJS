@@ -1,7 +1,6 @@
 import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
-
-export const notFound = 'Menu não encontrado.';
+import { notFound } from "@/commonVars";
 
 async function getMenu(id: string) {
   try {

@@ -1,5 +1,5 @@
 import { getMenu } from "@/data/getMenu";
-import { notFound } from "./page";
+import { notFound } from "@/commonVars";
 import { Metadata } from "next";
 
 export default function RootLayout({
