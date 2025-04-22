@@ -2,31 +2,11 @@ import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { notFound } from "@/commonVars";
 import Image from 'next/image';
-
-async function getMenu(id: string) {
-  try {
-    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/menu/${id}`, {
-      method: 'GET',
-      cache: 'no-store',
-    });
-
-    if (!response.ok && response.status === 404) {
-      return null;
-    }
-
-    const data = await response.json();
-    return data;
-  }
-  catch (error) {
-    console.error('Error fetching menu:', error);
-    return null;
-  }
-}
+import { getMenuData } from '@/data/getMenu';
 
 export default async function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const menu = await getMenu(id);
+  const menu = await getMenuData(id);
 
   if (!menu) {
     return <h1>{notFound}</h1>;
