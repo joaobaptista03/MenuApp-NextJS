@@ -1,4 +1,4 @@
-import { getMenuData } from "@/data/getMenu";
+import { getMenuData } from "@/data/getMenuData";
 import { notFound } from "@/commonVars";
 import { Metadata } from "next";
 

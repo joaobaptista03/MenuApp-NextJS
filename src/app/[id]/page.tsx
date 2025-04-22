@@ -2,7 +2,7 @@ import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { notFound } from "@/commonVars";
 import Image from 'next/image';
-import { getMenuData } from '@/data/getMenu';
+import { getMenuData } from '@/data/getMenuData';
 
 export default async function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
