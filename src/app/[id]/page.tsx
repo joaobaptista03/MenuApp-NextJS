@@ -1,6 +1,7 @@
 import { ICategory } from '@/components/Category';
 import { IProduct } from '@/components/Product';
 import { notFound } from "@/commonVars";
+import Image from 'next/image';
 
 async function getMenu(id: string) {
   try {
@@ -45,7 +46,7 @@ export default async function MenuPage({ params }: { params: Promise<{ id: strin
                 <p>{product.description}</p>
                 <p>{product.price.toFixed(2)}€</p>
                 {product.hasImage && (
-                  <img
+                  <Image
                     src={`/data/${id}/products/${product.id}.png`}
                     alt={product.name}
                     style={{ maxWidth: '100px', maxHeight: '100px' }}
