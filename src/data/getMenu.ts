@@ -6,7 +6,7 @@ export async function getMenuData(id: string) {
   try {
     const jsonData = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(jsonData);
-  } catch (error: any) {
+  } catch (error) {
     console.error(`Error reading menu file for id: ${id}, at path: ${filePath}`, error);
     return null;
   }
