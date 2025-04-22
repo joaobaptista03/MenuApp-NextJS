@@ -4,7 +4,7 @@ export async function getMenuData(id: string) {
   try {
     const response = await fetch(filePath);
     if (!response.ok) {
-      console.error(`Failed to fetch menu data for id: ${id}, status: ${response.status}`);
+      console.error(`Failed to fetch menu data for id: ${id}, status: ${response.status}, filePath: ${filePath}`);
       return null;
     }
     const jsonData = await response.json();
