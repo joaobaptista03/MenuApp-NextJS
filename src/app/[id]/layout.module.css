@@ -1,0 +1,24 @@
+.html,
+.body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.8rem;
+  color: #888;
+  border-top: 1px solid #eee;
+}
