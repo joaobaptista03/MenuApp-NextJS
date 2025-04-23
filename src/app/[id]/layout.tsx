@@ -7,7 +7,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  var currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
   return (
     <html lang="en" className={styles.html}>
       <head>
