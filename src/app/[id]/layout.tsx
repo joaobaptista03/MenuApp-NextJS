@@ -2,7 +2,7 @@ import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
 import styles from '@/styles/layout.module.css';
 import ThemeWrapper from '@/components/ThemeWrapper';
-import { notFound } from "./page";
+import { menuNotFound } from "./page";
 
 
 export default function RootLayout({
@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const menu = await getMenuData(id);
   if (!menu) {
     return {
-      title: notFound,
-      description: notFound,
+      title: menuNotFound,
+      description: menuNotFound,
     };
   }
   return {

@@ -9,7 +9,7 @@ import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
 
-export const notFound = 'Menu não encontrado.';
+export const menuNotFound = 'Menu não encontrado.';
 
 export default function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { theme } = useTheme();
@@ -69,7 +69,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
   if (error || !menu) {
     return (
       <div className={`${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`}>
-        {header(notFound)}
+        {header(menuNotFound)}
       </div>
     );
   }
