@@ -40,6 +40,8 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     loadMenuData();
   }, [resolvedId]);
 
+  const classNameString = `${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`;
+
   function header(title: string) {
     return (
       <header className={`${styles.header} ${theme === 'dark' ? styles.darkModeHeader : ''}`}>
@@ -51,7 +53,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
 
   if (loading) {
     return (
-      <div className={`${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`}>
+      <div className={classNameString}>
         {header('Loading...')}
         <div className={styles.loadingContainer}>
           <Image
@@ -59,6 +61,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
             alt="Loading..."
             width={80}
             height={80}
+            unoptimized
           />
         </div>
       </div>
@@ -67,14 +70,14 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
 
   if (error || !menu) {
     return (
-      <div className={`${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`}>
+      <div className={classNameString}>
         {header(menuNotFound)}
       </div>
     );
   }
 
   return (
-    <div className={`${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`}>
+    <div className={classNameString}>
       {header(menu.name)}
       {menu.categories.map((category: ICategory) => (
         <div key={category.name} className={`${styles.category} ${theme === 'dark' ? styles.darkModeCategory : ''}`}>
@@ -96,7 +99,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
               <div className={styles.productDetails}>
                 <h3 className={`${styles.productName} ${theme === 'dark' ? styles.darkModeProductName : ''}`}>{product.name}</h3>
                 {product.description && <p className={`${styles.productDescription} ${theme === 'dark' ? styles.darkModeProductDescription : ''}`}>{product.description}</p>}
-                <p className={`${styles.productPrice} ${theme === 'dark' ? styles.darkModeProductPrice : ''}`}>{product.price.toFixed(2)}€</p>
+                <p className={styles.productPrice}>{product.price.toFixed(2)}€</p>
               </div>
             </div>
           ))}
