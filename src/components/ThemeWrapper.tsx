@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ThemeToggler from './ThemeToggler';
-import styles from '@/app/[id]/layout.module.css';
+import styles from '@/styles/layout.module.css';
 import ThemedFooter from './ThemedFooter';
 
 interface ThemeWrapperProps {

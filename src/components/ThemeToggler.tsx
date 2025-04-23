@@ -2,7 +2,7 @@
 
 import { useTheme } from '@/components/ThemeProvider';
 import { useEffect } from 'react';
-import styles from '@/app/[id]/layout.module.css';
+import styles from '@/styles/layout.module.css';
 
 export default function ThemeToggler() {
   const { theme, toggleTheme } = useTheme();
