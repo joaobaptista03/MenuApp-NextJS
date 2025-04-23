@@ -1,14 +1,12 @@
 "use client";
 
-import { ICategory } from '@/data/models/Category';
-import { IProduct } from '@/data/models/Product';
-import { IMenu } from '@/data/models/Menu';
+import { IProduct, ICategory, IMenu } from '@/data/models';
 import Image from 'next/image';
 import styles from '@/styles/page.module.css';
-import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
 import { menuNotFound } from '@/constants';
+import { useTheme } from '@/components/ThemeLayout';
 
 export default function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { theme } = useTheme();

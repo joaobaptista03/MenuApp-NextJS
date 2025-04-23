@@ -1,8 +1,8 @@
 import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
 import styles from '@/styles/layout.module.css';
-import ThemeWrapper from '@/components/ThemeWrapper';
 import { menuNotFound } from "@/constants";
+import { ThemeLayout } from "@/components/ThemeLayout";
 
 export default function RootLayout({
   children,
@@ -15,9 +15,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
         <body className={styles.body}>
-          <ThemeWrapper>
+          <ThemeLayout>
             {children}
-          </ThemeWrapper>
+          </ThemeLayout>
         </body>
     </html>
   );
