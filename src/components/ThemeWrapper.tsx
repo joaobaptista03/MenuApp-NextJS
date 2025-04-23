@@ -1,10 +1,9 @@
-// @/components/ThemeWrapper.tsx
 "use client";
 
 import { ThemeProvider } from '@/components/ThemeProvider';
 import ThemeToggler from './ThemeToggler';
 import styles from '@/app/[id]/layout.module.css';
-import ThemedFooter from './ThemedFooter'; // Import the client footer
+import ThemedFooter from './ThemedFooter';
 
 interface ThemeWrapperProps {
   children: React.ReactNode;

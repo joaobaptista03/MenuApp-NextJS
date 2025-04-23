@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from '@/components/ThemeProvider';
-import styles from '@/app/[id]/layout.module.css'; // Import layout styles
+import styles from '@/app/[id]/layout.module.css';
 
 export default function ThemedFooter() {
   const { theme } = useTheme();

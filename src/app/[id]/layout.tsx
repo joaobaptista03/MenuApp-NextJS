@@ -1,9 +1,9 @@
-// app/[id]/layout.tsx
 import { getMenuData } from "@/data/getMenuData";
-import { notFound } from "@/commonVars";
 import { Metadata } from "next";
 import styles from './layout.module.css';
 import ThemeWrapper from '@/components/ThemeWrapper';
+import { notFound } from "./page";
+
 
 export default function RootLayout({
   children,

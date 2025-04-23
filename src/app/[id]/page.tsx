@@ -1,26 +1,19 @@
 "use client";
 
-import { ICategory } from '@/components/Category';
-import { IProduct } from '@/components/Product';
-import { notFound } from "@/commonVars";
+import { ICategory } from '@/data/models/Category';
+import { IProduct } from '@/data/models/Product';
+import { IMenu } from '@/data/models/Menu';
 import Image from 'next/image';
 import styles from './page.module.css';
 import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
 
-interface Menu {
-  name: string;
-  categories: ICategory[];
-}
+export const notFound = 'Menu não encontrado.';
 
-interface Params {
-  id: string;
-}
-
-export default function MenuPage({ params }: { params: Promise<Params> }) {
+export default function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { theme } = useTheme();
-  const [menu, setMenu] = useState<Menu | null>(null);
+  const [menu, setMenu] = useState<IMenu | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [resolvedId, setResolvedId] = useState<string | null>(null);

@@ -1,1 +1,0 @@
-export const notFound = 'Menu não encontrado.';
