@@ -3,7 +3,6 @@ export interface IProduct {
     name: string;
     description: string;
     price: number;
-    hasImage: boolean;
 }
 
 export interface ICategory {

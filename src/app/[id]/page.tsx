@@ -83,17 +83,20 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
           {category.description && <p className={`${styles.categoryDescription} ${theme === 'dark' ? styles.darkModeCategoryDescription : ''}`}>{category.description}</p>}
           {category.products.map((product: IProduct) => (
             <div key={product.name} className={`${styles.product} ${theme === 'dark' ? styles.darkModeProduct : ''}`}>
-              {product.hasImage && (
                 <div className={styles.productImage}>
-                  <Image
-                    src={`/data/${resolvedId}/products/${product.id}.png`}
-                    alt={product.name}
-                    width={80}
-                    height={80}
-                    style={{ objectFit: 'cover' }}
-                  />
+                <Image
+                  src={`/data/${resolvedId}/products/${product.id}.png`}
+                  alt={product.name}
+                  width={80}
+                  height={80}
+                  style={{ objectFit: 'cover' }}
+                  onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.style.display = 'none';
+                  }}
+                />
                 </div>
-              )}
               <div className={styles.productDetails}>
                 <h3 className={`${styles.productName} ${theme === 'dark' ? styles.darkModeProductName : ''}`}>{product.name}</h3>
                 {product.description && <p className={`${styles.productDescription} ${theme === 'dark' ? styles.darkModeProductDescription : ''}`}>{product.description}</p>}

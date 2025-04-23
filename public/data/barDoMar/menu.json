@@ -9,15 +9,13 @@
             "id": "mojito",
             "name": "Mojito",
             "description": "Rum, hortelã, açúcar e lima.",
-            "price": 5.5,
-            "hasImage": true
+            "price": 5.5
           },
           {
             "id": "caipirinha",
             "name": "Caipirinha",
             "description": "Cachaça, lima e açúcar.",
-            "price": 5,
-            "hasImage": true
+            "price": 5
           }
         ]
       },
@@ -29,15 +27,13 @@
             "id": "lulas-fritas",
             "name": "Lulas Fritas",
             "description": "Acompanhadas com limão.",
-            "price": 6,
-            "hasImage": true
+            "price": 6
           },
           {
             "id": "camarao-ao-alhinho",
             "name": "Camarão ao Alhinho",
             "description": "Camarões salteados no alho.",
-            "price": 8.5,
-            "hasImage": true
+            "price": 8.5
           }
         ]
       }
