@@ -1,0 +1,1 @@
+export const menuNotFound = 'Menu não encontrado.';

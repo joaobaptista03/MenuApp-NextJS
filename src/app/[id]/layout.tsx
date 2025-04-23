@@ -2,8 +2,7 @@ import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
 import styles from '@/styles/layout.module.css';
 import ThemeWrapper from '@/components/ThemeWrapper';
-import { menuNotFound } from "./page";
-
+import { menuNotFound } from "@/constants";
 
 export default function RootLayout({
   children,

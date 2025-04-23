@@ -8,8 +8,7 @@ import styles from '@/styles/page.module.css';
 import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
-
-export const menuNotFound = 'Menu não encontrado.';
+import { menuNotFound } from '@/constants';
 
 export default function MenuPage({ params }: { params: Promise<{ id: string }> }) {
   const { theme } = useTheme();
