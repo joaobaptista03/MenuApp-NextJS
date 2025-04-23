@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .body {
@@ -21,4 +23,23 @@
   font-size: 0.8rem;
   color: #888;
   border-top: 1px solid #eee;
+}
+
+.themeToggleButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.9rem;
+  border: 0;
+  background-color: transparent;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  z-index: 10;
+}
+
+.themeToggleButton {
+  background-color: transparent;
+  color: #fff;
+  border-color: #555;
 }

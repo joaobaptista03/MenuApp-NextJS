@@ -1,29 +1,32 @@
+// app/[id]/layout.tsx
 import { getMenuData } from "@/data/getMenuData";
 import { notFound } from "@/commonVars";
 import { Metadata } from "next";
 import styles from './layout.module.css';
+import ThemeWrapper from '@/components/ThemeWrapper';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const currentYear = new Date().getFullYear();
   return (
     <html lang="en" className={styles.html}>
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className={styles.body}>
-        <main className={styles.main}>{children}</main>
-        <footer className={styles.footer}>
-          <p>© {currentYear} MenuApp</p>
-        </footer>
-      </body>
+        <body className={styles.body}>
+          <ThemeWrapper>
+            {children}
+          </ThemeWrapper>
+        </body>
     </html>
   );
 }
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
   const menu = await getMenuData(id);
   if (!menu) {
     return {

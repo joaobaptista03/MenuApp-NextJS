@@ -2,7 +2,9 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 20px;
     background-color: #f8f8f8;
+    color: #333;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -15,6 +17,7 @@
     font-weight: 700;
     color: #333;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
 }
 
 .category {
@@ -23,6 +26,7 @@
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .categoryTitle {
@@ -32,12 +36,14 @@
     margin-bottom: 8px;
     border-bottom: 2px solid #eee;
     padding-bottom: 5px;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .categoryDescription {
     color: #777;
     margin-bottom: 15px;
     font-size: 0.95rem;
+    transition: color 0.3s ease;
 }
 
 .product {
@@ -46,6 +52,7 @@
     gap: 15px;
     padding: 15px 0;
     border-bottom: 1px solid #eee;
+    transition: border-bottom-color 0.3s ease;
 }
 
 .product:last-child {
@@ -67,60 +74,68 @@
     font-weight: 500;
     color: #444;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .productDescription {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 8px;
+    transition: color 0.3s ease;
 }
 
 .productPrice {
     font-size: 1.1rem;
     color: #007bff;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-.footer {
+.notFound {
     text-align: center;
-    padding: 20px 0;
-    font-size: 0.8rem;
-    color: #888;
-    border-top: 1px solid #eee;
-    margin-top: 40px;
+    padding: 50px;
+    color: #777;
+    font-size: 1.5rem;
 }
 
-@media (min-width: 600px) {
-    .container {
-        padding: 30px;
-    }
-
-    .header {
-        margin-bottom: 40px;
-    }
-
-    .menuTitle {
-        font-size: 3rem;
-    }
-
-    .category {
-        padding: 20px;
-    }
-
-    .categoryTitle {
-        font-size: 2rem;
-    }
-
-    .product {
-        gap: 20px;
-        padding: 20px 0;
-    }
-
-    .productName {
-        font-size: 1.2rem;
-    }
-
-    .productPrice {
-        font-size: 1.2rem;
-    }
+.darkModeContainer {
+    background-color: #121212;
+    color: #f5f5f5;
 }
+
+.darkModeHeader .menuTitle {
+    color: #f5f5f5;
+}
+
+.darkModeCategory {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.darkModeCategoryTitle {
+    color: #eee;
+    border-bottom-color: #333;
+}
+
+.darkModeCategoryDescription {
+    color: #ccc;
+}
+
+.darkModeProduct {
+    border-bottom-color: #333;
+}
+
+.darkModeProductName {
+    color: #ddd;
+}
+
+.darkModeProductDescription {
+    color: #aaa;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
