@@ -1,6 +1,6 @@
 import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
-import styles from './layout.module.css';
+import styles from '@/styles/layout.module.css';
 import ThemeWrapper from '@/components/ThemeWrapper';
 import { notFound } from "./page";
 

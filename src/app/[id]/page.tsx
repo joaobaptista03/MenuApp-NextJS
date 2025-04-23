@@ -4,7 +4,7 @@ import { ICategory } from '@/data/models/Category';
 import { IProduct } from '@/data/models/Product';
 import { IMenu } from '@/data/models/Menu';
 import Image from 'next/image';
-import styles from './page.module.css';
+import styles from '@/styles/page.module.css';
 import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
