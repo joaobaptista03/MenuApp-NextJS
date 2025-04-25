@@ -61,11 +61,12 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
   };
 
   if (loading) {
+    const loadingText = "Loading...";
     const loadingAnimation = (
       <div className={styles.loadingContainer}>
         <Image
           src="/loading.gif"
-          alt="Loading..."
+          alt={loadingText}
           width={80}
           height={80}
           unoptimized
@@ -73,7 +74,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
       </div>
     );
 
-    return renderPage("Loading...", loadingAnimation);
+    return renderPage(loadingText, loadingAnimation);
   }
 
   if (error || !menu) {
