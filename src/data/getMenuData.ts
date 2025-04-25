@@ -1,11 +1,8 @@
 export async function getMenuData(id: string, useBase: boolean = true) {
   const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
-  let filePath: string;
-
+  let filePath = `/data/${id}/menu.json`;
   if (useBase) {
-    filePath = `${baseUrl}/data/${id}/menu.json`;
-  } else {
-    filePath = `/data/${id}/menu.json`;
+    filePath = baseUrl + filePath;
   }
 
   try {
