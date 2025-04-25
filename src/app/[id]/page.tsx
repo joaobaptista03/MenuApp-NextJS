@@ -81,6 +81,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     return renderPage(menuNotFound);
   }
 
+  const productPicSize = 80;
   const menuRender = menu.categories.map((category: ICategory) => (
     <div key={category.name} className={themedClassName('category')}>
       <h2 className={themedClassName('categoryTitle')}>{category.name}</h2>
@@ -91,8 +92,8 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
             <Image
               src={`/data/${resolvedId}/products/${product.id}.png`}
               alt={product.name}
-              width={80}
-              height={80}
+              width={productPicSize}
+              height={productPicSize}
               style={{ objectFit: 'cover' }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
