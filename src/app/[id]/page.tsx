@@ -60,7 +60,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     );
   };
 
-  const renderLoadingPage = () => {
+  if (loading) {
     const loadingAnimation = (
       <div className={styles.loadingContainer}>
         <Image
@@ -74,10 +74,6 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     );
 
     return renderPage("Loading...", loadingAnimation);
-  };
-
-  if (loading) {
-    return renderLoadingPage();
   }
 
   if (error || !menu) {
