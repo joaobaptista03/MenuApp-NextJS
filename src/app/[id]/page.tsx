@@ -27,85 +27,92 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
         const data = await getMenuData(resolvedId, false);
         if (data) {
           setMenu(data);
-          setLoading(false);
         } else {
           setError('Failed to load menu data.');
-          setLoading(false);
         }
+        setLoading(false);
       }
     }
 
     loadMenuData();
   }, [resolvedId]);
 
-  const classNameString = `${styles.container} ${theme === 'dark' ? styles.darkModeContainer : ''}`;
+  const themedClassName = (baseClass: string) => {
+    if (theme === 'light') {
+      return styles[baseClass];
+    }
 
-  function header(title: string) {
-    return (
-      <header className={`${styles.header} ${theme === 'dark' ? styles.darkModeHeader : ''}`}>
-        <h1 className={`${styles.menuTitle} ${theme === 'dark' ? styles.darkModeMenuTitle : ''}`}>{title}</h1>
+    return styles[baseClass] + " " + styles[`darkMode${baseClass.charAt(0).toUpperCase()}${baseClass.slice(1)}`];
+  };
+
+  const renderPage = (title: string, children: React.ReactNode = null) => {
+    const header = (
+      <header className={themedClassName('header')}>
+        <h1 className={themedClassName('menuTitle')}>{title}</h1>
       </header>
-    );
-  }
+    )
 
-
-  if (loading) {
     return (
-      <div className={classNameString}>
-        {header('Loading...')}
-        <div className={styles.loadingContainer}>
-          <Image
-            src="/loading.gif"
-            alt="Loading..."
-            width={80}
-            height={80}
-            unoptimized
-          />
-        </div>
+      <div className={themedClassName('container')}>
+        {header}
+        {children}
       </div>
     );
+  };
+
+  const renderLoadingPage = () => {
+    const loadingAnimation = (
+      <div className={styles.loadingContainer}>
+        <Image
+          src="/loading.gif"
+          alt="Loading..."
+          width={80}
+          height={80}
+          unoptimized
+        />
+      </div>
+    );
+
+    return renderPage("Loading...", loadingAnimation);
+  };
+
+  if (loading) {
+    return renderLoadingPage();
   }
 
   if (error || !menu) {
-    return (
-      <div className={classNameString}>
-        {header(menuNotFound)}
-      </div>
-    );
+    return renderPage(menuNotFound);
   }
 
-  return (
-    <div className={classNameString}>
-      {header(menu.name)}
-      {menu.categories.map((category: ICategory) => (
-        <div key={category.name} className={`${styles.category} ${theme === 'dark' ? styles.darkModeCategory : ''}`}>
-          <h2 className={`${styles.categoryTitle} ${theme === 'dark' ? styles.darkModeCategoryTitle : ''}`}>{category.name}</h2>
-          {category.description && <p className={`${styles.categoryDescription} ${theme === 'dark' ? styles.darkModeCategoryDescription : ''}`}>{category.description}</p>}
-          {category.products.map((product: IProduct) => (
-            <div key={product.name} className={`${styles.product} ${theme === 'dark' ? styles.darkModeProduct : ''}`}>
-                <div className={styles.productImage}>
-                <Image
-                  src={`/data/${resolvedId}/products/${product.id}.png`}
-                  alt={product.name}
-                  width={80}
-                  height={80}
-                  style={{ objectFit: 'cover' }}
-                  onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.style.display = 'none';
-                  }}
-                />
-                </div>
-              <div className={styles.productDetails}>
-                <h3 className={`${styles.productName} ${theme === 'dark' ? styles.darkModeProductName : ''}`}>{product.name}</h3>
-                {product.description && <p className={`${styles.productDescription} ${theme === 'dark' ? styles.darkModeProductDescription : ''}`}>{product.description}</p>}
-                <p className={styles.productPrice}>{product.price.toFixed(2)}€</p>
-              </div>
-            </div>
-          ))}
+  const menuRender = menu.categories.map((category: ICategory) => (
+    <div key={category.name} className={themedClassName('category')}>
+      <h2 className={themedClassName('categoryTitle')}>{category.name}</h2>
+      {category.description && <p className={themedClassName('categoryDescription')}>{category.description}</p>}
+      {category.products.map((product: IProduct) => (
+        <div key={product.name} className={themedClassName('product')}>
+          <div className={styles.productImage}>
+            <Image
+              src={`/data/${resolvedId}/products/${product.id}.png`}
+              alt={product.name}
+              width={80}
+              height={80}
+              style={{ objectFit: 'cover' }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.style.display = 'none';
+              }}
+            />
+          </div>
+          <div className={styles.productDetails}>
+            <h3 className={themedClassName('productName')}>{product.name}</h3>
+            {product.description && <p className={themedClassName('productDescription')}>{product.description}</p>}
+            <p className={styles.productPrice}>{product.price.toFixed(2)}€</p>
+          </div>
         </div>
       ))}
     </div>
-  );
+  ));
+
+  return renderPage(menu.name, menuRender);
 }
