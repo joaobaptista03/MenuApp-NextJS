@@ -14,6 +14,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [resolvedId, setResolvedId] = useState<string | null>(null);
+  const [visits, setVisits] = useState<number | null>(null);
 
   useEffect(() => {
     params.then((resolvedParams) => {
@@ -37,6 +38,16 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     loadMenuData();
   }, [resolvedId]);
 
+  useEffect(() => {
+    if (!resolvedId) return;
+    
+    fetch(`/api/visits?id=${resolvedId}`)
+      .then(res => res.json())
+      .then((data: { visits: number }) => {
+        setVisits(data.visits);
+      });
+  }, [resolvedId]);
+
   const themedClassName = (baseClass: string) => {
     if (theme === 'light') {
       return styles[baseClass];
@@ -50,12 +61,28 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
       <header className={themedClassName('header')}>
         <h1 className={themedClassName('menuTitle')}>{title}</h1>
       </header>
+    );
+
+    const visitasText = <p className={themedClassName('visitasInfo')}>{visits} visitas</p>;
+
+    const main = (
+      <main className={styles.main}>
+        {children}
+      </main>
+    )
+
+    const footer = (
+      <footer className={themedClassName('footer')}>
+        <p>© {new Date().getFullYear()} MenuApp</p>
+      </footer>
     )
 
     return (
       <div className={themedClassName('container')}>
         {header}
-        {children}
+        {visitasText}
+        {main}
+        {footer}
       </div>
     );
   };
