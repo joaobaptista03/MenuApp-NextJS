@@ -7,13 +7,14 @@
 
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
-.visitasInfo {
+.visitsInfo {
     text-align: center;
     font-size: 1rem;
     margin-bottom: 20px;
+    margin-top: 0px;
     color: #888;
     transition: color 0.3s ease;
 }
@@ -124,7 +125,7 @@
     color: #f5f5f5;
 }
 
-.darkModeVisitasInfo {
+.darkModeVisitsInfo {
     color: #aaa;
 }
 

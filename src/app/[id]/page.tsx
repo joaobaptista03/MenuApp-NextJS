@@ -42,10 +42,15 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     if (!resolvedId) return;
     
     fetch(`/api/visits?id=${resolvedId}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          return;
+        }
+        return res.json()
+      })
       .then((data: { visits: number }) => {
         setVisits(data.visits);
-      });
+      })
   }, [resolvedId]);
 
   const themedClassName = (baseClass: string) => {
@@ -63,7 +68,11 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
       </header>
     );
 
-    const visitasText = <p className={themedClassName('visitasInfo')}>{visits} visitas</p>;
+    let visitsText: React.ReactNode = null;
+    if (visits !== null) {
+      const timesText = visits === 1 ? "vez" : "vezes";
+      visitsText = <p className={themedClassName('visitsInfo')}>Visitado {visits} {timesText} hoje.</p>;
+    }    
 
     const main = (
       <main className={styles.main}>
@@ -80,7 +89,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
     return (
       <div className={themedClassName('container')}>
         {header}
-        {visitasText}
+        {visitsText}
         {main}
         {footer}
       </div>
