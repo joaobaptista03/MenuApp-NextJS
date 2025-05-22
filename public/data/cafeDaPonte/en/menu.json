@@ -1,0 +1,41 @@
+{
+    "name": "Bridge Café",
+    "categories": [
+      {
+        "name": "Coffees",
+        "description": "Our special coffees.",
+        "products": [
+          {
+            "id": "expresso",
+            "name": "Espresso",
+            "description": "Strong and full-bodied coffee.",
+            "price": 1.2
+          },
+          {
+            "id": "capuccino",
+            "name": "Cappuccino",
+            "description": "With steamed milk and foam.",
+            "price": 2.5
+          }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "description": "Perfect to accompany your coffee.",
+        "products": [
+          {
+            "id": "pastel-de-nata",
+            "name": "Custard Tart",
+            "description": "Traditional Portuguese sweet pastry.",
+            "price": 1.1
+          },
+          {
+            "id": "tosta-mista",
+            "name": "Toasted Sandwich",
+            "description": "Toasted bread with cheese and ham.",
+            "price": 3
+          }
+        ]
+      }
+    ]
+  }

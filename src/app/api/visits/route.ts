@@ -1,5 +1,6 @@
 import { getMenuData } from '@/data/getMenuData';
 import { NextRequest, NextResponse } from 'next/server';
+import { defaultLocale } from '@/constants';
 
 const counter: Record<string, number> = {};
 let lastResetDate: string | null = null;
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'ID is required' }, { status: 400 });
   }
 
-  if (await getMenuData(id) == null) {
+  if (await getMenuData(id, defaultLocale) == null) {
     return NextResponse.json({ error: 'Invalid ID' }, { status: 404 });
   }
 

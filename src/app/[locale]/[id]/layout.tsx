@@ -1,7 +1,7 @@
 import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
 import styles from '@/styles/layout.module.css';
-import { menuNotFound } from "@/constants";
+import { defaultLocale, getConstantsByLocale } from "@/constants";
 import { ThemeLayout } from "@/components/ThemeLayout";
 
 export default function RootLayout({
@@ -23,18 +23,21 @@ export default function RootLayout({
   );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ id: string, locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const { id } = resolvedParams;
-  const menu = await getMenuData(id);
+  const { id, locale } = resolvedParams;
+  const menu = await getMenuData(id, defaultLocale);
+
+  const constants = getConstantsByLocale(locale, menu.name);
+
   if (!menu) {
     return {
-      title: menuNotFound,
-      description: menuNotFound,
+      title: constants.menuNotFound,
+      description: constants.menuNotFound,
     };
   }
   return {
     title: menu.name,
-    description: `Menu do ${menu.name}`,
+    description: constants.description,
   };
 }

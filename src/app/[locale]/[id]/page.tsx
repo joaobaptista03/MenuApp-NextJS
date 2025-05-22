@@ -5,31 +5,35 @@ import Image from 'next/image';
 import styles from '@/styles/page.module.css';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
-import { menuNotFound } from '@/constants';
+import { defaultLocale, Constants, getConstantsByLocale } from '@/constants';
 import { useTheme } from '@/components/ThemeLayout';
 
-export default function MenuPage({ params }: { params: Promise<{ id: string }> }) {
+export default function MenuPage({ params }: { params: Promise<{ id: string, locale: string }> }) {
   const { theme } = useTheme();
   const [menu, setMenu] = useState<IMenu | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
   const [resolvedId, setResolvedId] = useState<string | null>(null);
+  const [resolvedLocale, setResolvedLocale] = useState<string | null>(null);
   const [visits, setVisits] = useState<number | null>(null);
+  const [constants, setConstants] = useState<Constants>(getConstantsByLocale('', defaultLocale));
 
   useEffect(() => {
     params.then((resolvedParams) => {
       setResolvedId(resolvedParams.id);
+      setResolvedLocale(resolvedParams.locale);
+      setConstants(getConstantsByLocale(resolvedParams.id, resolvedParams.locale));
     });
   }, [params]);
 
   useEffect(() => {
     async function loadMenuData() {
-      if (resolvedId) {
-        const data = await getMenuData(resolvedId, false);
+      if (resolvedId && resolvedLocale) {
+        const data = await getMenuData(resolvedId, resolvedLocale, false);
         if (data) {
           setMenu(data);
         } else {
-          setError('Failed to load menu data.');
+          setError(true);
         }
         setLoading(false);
       }
@@ -70,8 +74,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
 
     let visitsText: React.ReactNode = null;
     if (visits !== null) {
-      const timesText = visits === 1 ? "vez" : "vezes";
-      visitsText = <p className={themedClassName('visitsInfo')}>Visitado {visits} {timesText} hoje.</p>;
+      visitsText = <p className={themedClassName('visitsInfo')}>{constants.visitedText} {visits} {visits == 1 ? constants.timeText : constants.timesText} {constants.todayText}.</p>;
     }    
 
     const main = (
@@ -97,12 +100,11 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
   };
 
   if (loading) {
-    const loadingText = "Loading...";
     const loadingAnimation = (
       <div className={styles.loadingContainer}>
         <Image
           src="/loading.gif"
-          alt={loadingText}
+          alt={constants.loadingText}
           width={80}
           height={80}
           unoptimized
@@ -110,11 +112,11 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
       </div>
     );
 
-    return renderPage(loadingText, loadingAnimation);
+    return renderPage(constants.loadingText, loadingAnimation);
   }
 
   if (error || !menu) {
-    return renderPage(menuNotFound);
+    return renderPage(constants.menuNotFound);
   }
 
   const productPicSize = 80;

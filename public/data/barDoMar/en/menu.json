@@ -1,0 +1,41 @@
+{
+    "name": "Seaside Bar",
+    "categories": [
+      {
+        "name": "Cocktails",
+        "description": "Refreshing drinks by the sea.",
+        "products": [
+          {
+            "id": "mojito",
+            "name": "Mojito",
+            "description": "Rum, mint, sugar, and lime.",
+            "price": 5.5
+          },
+          {
+            "id": "caipirinha",
+            "name": "Caipirinha",
+            "description": "Cachaça, lime, and sugar.",
+            "price": 5
+          }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "description": "Small seafood delights.",
+        "products": [
+          {
+            "id": "lulas-fritas",
+            "name": "Fried Squid",
+            "description": "Served with lemon.",
+            "price": 6
+          },
+          {
+            "id": "camarao-ao-alhinho",
+            "name": "Garlic Shrimp",
+            "description": "Shrimp sautéed in garlic.",
+            "price": 8.5
+          }
+        ]
+      }
+    ]
+  }
