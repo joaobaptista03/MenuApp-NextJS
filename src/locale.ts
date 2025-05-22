@@ -10,6 +10,11 @@ export type Constants = {
     todayText: string;
 };
 
+export const supportedLocales = [
+    { code: 'pt', name: 'Português' },
+    { code: 'en', name: 'English' },
+];
+
 export const getConstantsByLocale = (id: string, locale: string): Constants => {
     switch (locale) {
         case 'en':

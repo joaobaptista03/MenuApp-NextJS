@@ -1,16 +1,18 @@
 import { getMenuData } from "@/data/getMenuData";
 import { Metadata } from "next";
 import styles from '@/styles/layout.module.css';
-import { defaultLocale, getConstantsByLocale } from "@/constants";
+import { defaultLocale, getConstantsByLocale } from "@/locale";
 import { ThemeLayout } from "@/components/ThemeLayout";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
+export default async function RootLayout({ children, params }: {
+  children: React.ReactNode,
+  params: Promise<{ id: string, locale: string }>
 }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+  
   return (
-    <html lang="en" className={styles.html}>
+    <html lang={locale || defaultLocale} className={styles.html}>
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>

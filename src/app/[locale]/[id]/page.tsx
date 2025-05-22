@@ -5,8 +5,9 @@ import Image from 'next/image';
 import styles from '@/styles/page.module.css';
 import { useState, useEffect } from 'react';
 import { getMenuData } from '@/data/getMenuData';
-import { defaultLocale, Constants, getConstantsByLocale } from '@/constants';
+import { defaultLocale, Constants, getConstantsByLocale } from '@/locale';
 import { useTheme } from '@/components/ThemeLayout';
+import { themedClassName } from '@/auxFuncs';
 
 export default function MenuPage({ params }: { params: Promise<{ id: string, locale: string }> }) {
   const { theme } = useTheme();
@@ -57,24 +58,16 @@ export default function MenuPage({ params }: { params: Promise<{ id: string, loc
       })
   }, [resolvedId]);
 
-  const themedClassName = (baseClass: string) => {
-    if (theme === 'light') {
-      return styles[baseClass];
-    }
-
-    return styles[baseClass] + " " + styles[`darkMode${baseClass.charAt(0).toUpperCase()}${baseClass.slice(1)}`];
-  };
-
   const renderPage = (title: string, children: React.ReactNode = null) => {
     const header = (
-      <header className={themedClassName('header')}>
-        <h1 className={themedClassName('menuTitle')}>{title}</h1>
+      <header className={themedClassName('header', theme, styles)}>
+        <h1 className={themedClassName('menuTitle', theme, styles)}>{title}</h1>
       </header>
     );
 
     let visitsText: React.ReactNode = null;
     if (visits !== null) {
-      visitsText = <p className={themedClassName('visitsInfo')}>{constants.visitedText} {visits} {visits == 1 ? constants.timeText : constants.timesText} {constants.todayText}.</p>;
+      visitsText = <p className={themedClassName('visitsInfo', theme, styles)}>{constants.visitedText} {visits} {visits == 1 ? constants.timeText : constants.timesText} {constants.todayText}.</p>;
     }    
 
     const main = (
@@ -84,13 +77,13 @@ export default function MenuPage({ params }: { params: Promise<{ id: string, loc
     )
 
     const footer = (
-      <footer className={themedClassName('footer')}>
+      <footer className={themedClassName('footer', theme, styles)}>
         <p>© {new Date().getFullYear()} MenuApp</p>
       </footer>
     )
 
     return (
-      <div className={themedClassName('container')}>
+      <div className={themedClassName('container', theme, styles)}>
         {header}
         {visitsText}
         {main}
@@ -121,11 +114,11 @@ export default function MenuPage({ params }: { params: Promise<{ id: string, loc
 
   const productPicSize = 80;
   const menuRender = menu.categories.map((category: ICategory) => (
-    <div key={category.name} className={themedClassName('category')}>
-      <h2 className={themedClassName('categoryTitle')}>{category.name}</h2>
-      {category.description && <p className={themedClassName('categoryDescription')}>{category.description}</p>}
+    <div key={category.name} className={themedClassName('category', theme, styles)}>
+      <h2 className={themedClassName('categoryTitle', theme, styles)}>{category.name}</h2>
+      {category.description && <p className={themedClassName('categoryDescription', theme, styles)}>{category.description}</p>}
       {category.products.map((product: IProduct) => (
-        <div key={product.name} className={themedClassName('product')}>
+        <div key={product.name} className={themedClassName('product', theme, styles)}>
           <div className={styles.productImage}>
             <Image
               src={`/data/${resolvedId}/products/${product.id}.png`}
@@ -141,8 +134,8 @@ export default function MenuPage({ params }: { params: Promise<{ id: string, loc
             />
           </div>
           <div className={styles.productDetails}>
-            <h3 className={themedClassName('productName')}>{product.name}</h3>
-            {product.description && <p className={themedClassName('productDescription')}>{product.description}</p>}
+            <h3 className={themedClassName('productName', theme, styles)}>{product.name}</h3>
+            {product.description && <p className={themedClassName('productDescription', theme, styles)}>{product.description}</p>}
             <p className={styles.productPrice}>{product.price.toFixed(2)}€</p>
           </div>
         </div>

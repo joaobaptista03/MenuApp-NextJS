@@ -1,6 +1,6 @@
 import { getMenuData } from '@/data/getMenuData';
 import { NextRequest, NextResponse } from 'next/server';
-import { defaultLocale } from '@/constants';
+import { defaultLocale } from '@/locale';
 
 const counter: Record<string, number> = {};
 let lastResetDate: string | null = null;
