@@ -34,7 +34,7 @@ To get MenuApp up and running locally, follow these steps:
 
     ```bash
     git clone https://github.com/joaobaptista03/MenuApp-NextJS.git
-    cd menuapp
+    cd MenuApp-NextJS
     ```
 
 2.  **Install dependencies:**
